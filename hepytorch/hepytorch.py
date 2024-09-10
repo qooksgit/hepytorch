@@ -4,7 +4,7 @@ import torch
 import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 from sklearn.model_selection import train_test_split
-from . import models
+from . import model_factory
 
 __all__ = (
     'HEPTorch',
@@ -30,7 +30,8 @@ class HEPTorch():
             self.config = json.load(f)
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
         self.data = self._load_data()
-        self.model = self._construct_model()
+        model_cfg = self.config.get('model')
+        self.model = model_factory.ModelFactory().create_instance(model_cfg)
         self.loss_fn = self._construct_loss_fn()
         self.optimizer = self._construct_optimizer()
 
@@ -51,16 +52,6 @@ class HEPTorch():
                 raise ValueError("Data format not found: ", format)
         return data
         
-    def _construct_model(self):
-        cfg = self.config.get('model')
-        model_name = cfg.get('name')
-        match model_name:
-            case "linear_regression":
-                kwargs = cfg.get("kwargs")
-                return models.LinearRegression(**kwargs)
-            case _:
-                raise ValueError("Model not found: ", model_name)
-
     def _construct_loss_fn(self):
         cfg = self.config.get('loss_fn')
         loss_fn_name = cfg.get('name')

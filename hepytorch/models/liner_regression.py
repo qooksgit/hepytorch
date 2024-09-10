@@ -4,7 +4,6 @@ import torch.nn as nn
 __all__ = (
     'LinearRegression',
 )
-
 class LinearRegression(nn.Module):
     def __init__(self, **kwargs):
         input_features = kwargs.pop('input_features')

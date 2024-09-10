@@ -1,11 +1,11 @@
 {
     "data": {
         "name": "mydata",
-        "path": "/Users/i550012/study/hepytorch/examples/data/linear_regression_data.csv",
+        "path": "/Users/i550012/study/heptopics/hepytorch/examples/data/linear_regression_data.csv",
         "format": "csv"
     },
     "model": {
-        "name": "linear_regression",
+        "name": "LinearRegression",
         "kwargs": {
             "input_features": 2,
             "output_features": 1
