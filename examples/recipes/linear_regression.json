@@ -1,8 +1,10 @@
 {
     "data": {
-        "name": "mydata",
-        "path": "/Users/i550012/study/heptopics/hepytorch/examples/data/linear_regression_data.csv",
-        "format": "csv"
+        "name": "CSVLoader",
+        "kwargs": {
+            "path": "/Users/i550012/study/heptopics/hepytorch/examples/data/linear_regression_data.csv",
+            "format": "csv"
+        }
     },
     "model": {
         "name": "LinearRegression",
