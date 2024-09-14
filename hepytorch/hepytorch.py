@@ -4,7 +4,11 @@ import torch
 import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 from sklearn.model_selection import train_test_split
-from .factories import model_factory, dataloader_factory
+from .factories.model_factory import ModelFactory
+from .factories.dataloader_factory import DataLoaderFactory
+from .factories.preprocessor_factory import PreprocessorFactory
+from .factories.lossfn_factory import LossFnFactory
+from .factories.optimizer_factory import OptimizerFactory
 
 __all__ = ("HEPTorch",)
 
@@ -25,45 +29,21 @@ class LinearDataset(Dataset):
 
 class HEPTorch:
     def __init__(self, config):
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
         with open(config, "r") as f:
             self.config = json.load(f)
-        self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        dataloader = dataloader_factory.DataLoaderFactory().create_instance(
-            self.config.get("data")
-        )
+        dataloader = DataLoaderFactory().create_instance(self.config.get("data"))
         self.data = dataloader.load_data()
-        # self.data = self._load_data()
-        self.model = model_factory.ModelFactory().create_instance(
-            self.config.get("model")
+        self.preprocessor = PreprocessorFactory().create_instance(
+            self.config.get("preprocessor")
         )
-        self.loss_fn = self._construct_loss_fn()
-        self.optimizer = self._construct_optimizer()
 
-    def _load_data(self):
-        cfg = self.config.get("data")
-        path = cfg.get("path")
-        format = cfg.get("format")
-        match format:
-            case "csv":
-                data = pd.read_csv(path)
-            case "json":
-                data = pd.read_json(path)
-            case "pickle":
-                data = pd.read_pickle(path)
-            case "parquet":
-                data = pd.read_parquet(path)
-            case _:
-                raise ValueError("Data format not found: ", format)
-        return data
+        self.model = ModelFactory().create_instance(self.config.get("model"))
 
-    def _construct_loss_fn(self):
-        cfg = self.config.get("loss_fn")
-        loss_fn_name = cfg.get("name")
-        match loss_fn_name:
-            case "MSELoss":
-                return torch.nn.MSELoss()
-            case _:
-                raise ValueError("Loss function not found: ", loss_fn_name)
+        loss_fn = LossFnFactory().create_instance(self.config.get("loss_fn"))
+        self.loss_fn = loss_fn.get_loss_fn()
+        optimizer = OptimizerFactory().create_instance(self.config.get("optimizer"))
+        self.optimizer = optimizer.get_optimizer(self.model)
 
     def _construct_optimizer(self):
         cfg = self.config.get("optimizer")
@@ -80,11 +60,9 @@ class HEPTorch:
         cfg = self.config.get("train")
         batch_size = cfg.get("batch_size", 4)
         epochs = cfg.get("epochs", 10)
-        data = torch.from_numpy(self.data[["x1", "x2"]].values).type(torch.float)
+        data = self.preprocessor.data(self.data)
         data = data.to(self.device)
-        target = (
-            torch.from_numpy(self.data["y"].values).type(torch.float).reshape(-1, 1)
-        )
+        target = self.preprocessor.target(self.data)
         target = target.to(self.device)
         train_data = DataLoader(
             LinearDataset(data, target), batch_size=batch_size, shuffle=True

@@ -1,1 +1,1 @@
-from .liner_regression import LinearRegression
+from .liner_regression import LinearRegressionPreprocessor
