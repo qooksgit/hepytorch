@@ -32,7 +32,7 @@ class BasicTrainer(AbsTrainer):
         for e in range(self.epochs):
             cumulative_loss = 0
             # inner loop
-            for i, (data2, label) in enumerate(train_data):
+            for _i, (data2, label) in enumerate(train_data):
                 data2 = data2.to(device)
                 label = label.to(device)
                 yhat = model(data2)

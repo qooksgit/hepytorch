@@ -3,8 +3,6 @@ import torch
 
 
 class LinearRegressionPreprocessor(AbsPreprocessor):
-    def __init__(self, **kwargs):
-        super(LinearRegressionPreprocessor, self).__init__(**kwargs)
 
     def data(self, df):
         data = torch.from_numpy(df[["x1", "x2"]].values).type(torch.float)

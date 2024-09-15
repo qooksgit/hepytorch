@@ -1,9 +1,5 @@
 import json
-import pandas as pd
-import torch
-import torch.optim as optim
-from torch.utils.data import Dataset, DataLoader
-from sklearn.model_selection import train_test_split
+import torch.cuda as cuda
 from .factories.model_factory import ModelFactory
 from .factories.dataloader_factory import DataLoaderFactory
 from .factories.preprocessor_factory import PreprocessorFactory
@@ -19,7 +15,7 @@ __all__ = ("HEPTorch",)
 
 class HEPTorch:
     def __init__(self, config):
-        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.device = "cuda" if cuda.is_available() else "cpu"
         with open(config, "r") as f:
             self.config = json.load(f)
         dataloader = DataLoaderFactory().create_instance(self.config.get("data"))
