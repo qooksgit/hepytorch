@@ -28,9 +28,11 @@
             "momentum": 0.9
         }
     },
-    "train": {
-        "name": "myTraining",
-        "epochs": 30,
-        "batch_size": 10
+    "trainer": {
+        "name": "BasicTrainer",
+        "kwargs": {
+            "epochs": 30,
+            "batch_size": 10
+        }
     }
 }
