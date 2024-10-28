@@ -1,0 +1,19 @@
+top: generator level top quark
+top~: generator level antitop quark
+b: generator level bottom quark
+b~: generator level antibottom quark
+l-: generator level lepton quark
+l+: generator level antilepton quark
+nu_l: generator level neutrino quark
+mu_l~: generator level antineutrino quark
+
+j_1: observed b-tagged jet 1
+j_2: observed b-tagged jet 2
+l_1: observed lepton 1
+l_2: observed lepton 2
+mex: observed missing energy in x-direction
+mey: observed missing energy in y-direction
+
+
+top px, top py, top pz, top mass, b px, b py, b pz, b mass, l+ px, l+ py, l+ pz, l+ mass, nu_l px, nu_l py, nu_l pz, nu_l mass, top~ px, top~ py, top~ pz, top~ mass, b~ px, b~ py, b~ pz, b~ mass, l- px, l- py, l- pz, l- mass, nu_l~ px, nu_l~ py, nu_l~ pz, nu_l~ mass, j_1 px, j_1 py, j_1 pz, j_1 mass, l_1 px, l_1 py, l_1 pz, l_1 mass, j_2 px, j_2 py, j_2 pz, j_2 mass, l_2 px, l_2 py, l_2 pz, l_2 mass, mex, mey
+
