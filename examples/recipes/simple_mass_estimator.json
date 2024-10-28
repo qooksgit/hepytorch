@@ -1,0 +1,40 @@
+{
+    "data": {
+        "name": "CSVLoader",
+        "kwargs": {
+            "path": "/Users/i550012/study/heptopics/hepytorch/examples/data/toymc/ttbar_1_30ll_test.csv",
+            "format": "csv"
+        }
+    },
+    "preprocessor": {
+        "name": "EnergyPreprocessor",
+        "kwargs": {}
+    },
+    "model": {
+        "name": "SimpleNeuralNetwork",
+        "kwargs": {
+            "input_features": 8,
+            "hidden_features": 100,
+            "output_features": 1,
+            "dropout": 0.0
+        }
+    },
+    "loss_fn": {
+        "name": "MSELoss",
+        "kwargs": {}
+    },
+    "optimizer": {
+        "name": "SGD",
+        "kwargs": {
+            "learning_rate": 1e-5,
+            "momentum": 0.9
+        }
+    },
+    "trainer": {
+        "name": "BasicTrainer",
+        "kwargs": {
+            "epochs": 20,
+            "batch_size": 10
+        }
+    }
+}

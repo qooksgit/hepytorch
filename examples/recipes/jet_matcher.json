@@ -1,0 +1,39 @@
+{
+    "data": {
+        "name": "CSVLoader",
+        "kwargs": {
+            "path": "/Users/i550012/study/heptopics/hepytorch/examples/data/toymc/ttbar_1_30ll_test.csv",
+            "format": "csv"
+        }
+    },
+    "preprocessor": {
+        "name": "JetSwapper",
+        "kwargs": {}
+    },
+    "model": {
+        "name": "BinaryClassification",
+        "kwargs": {
+            "input_features": 22,
+            "hidden_features": 60,
+            "output_features": 1
+        }
+    },
+    "loss_fn": {
+        "name": "BCELoss",
+        "kwargs": {}
+    },
+    "optimizer": {
+        "name": "Adam",
+        "kwargs": {
+            "learning_rate": 1e-4
+        }
+    },
+    "trainer": {
+        "name": "KFoldCrossValidationTrainer",
+        "kwargs": {
+            "epochs": 40,
+            "batch_size": 10,
+            "k": 5
+        }
+    }
+}
