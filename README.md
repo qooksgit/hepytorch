@@ -5,16 +5,21 @@
 It is built on top of PyTorch and provides a set of tools for training and evaluating deep learning models using the factory pattern[^1]. 
 So you can easily build your own model and train it with your own dataset by adding a new class to the modules.
 
-HePyporch is currently focusing on the following tasks:
+HePytorch is currently focusing on the following tasks:
 - Estimation of the top quark mass based from the kinematic properties of the top quark decay products based on the Monte Carlo simulation
 - B-jet matching between the reconstructed jets and the leptons from the top quark decay
 
 ## Installation
 ### Using Pip
-With the option -e is used to install the package in editable mode, so you can modify the code and see the changes immediately without reinstalling the package. 
+The `-e` option installs the package in editable mode, allowing you to modify the code and see changes immediately without reinstalling.
 
+#### First, install dependencies
+```bash
+pip install -r requirements.txt
 ```
-pip install -e -r requirements.txt
+#### Then, install HePytorch in editable mode
+```
+pip install -e .
 ```
 
 ## Quick Start
@@ -101,12 +106,11 @@ You can add a new module by creating a new class in the modules directory. The c
 
 2. hepytorch/models/\_\_init__.py
    ```python
-   from .liner_regression import LinearRegression
+   from .linear_regression import LinearRegression
    __all__ = ["LinearRegression"]
    ```
 
-
-For more information, please have a look subdirectories in the hepytorch directory.
+For more information, please have a look at the subdirectories in the hepytorch directory
 
 ## License
 HePytorch is released under the MIT License. See the LICENSE file for more information. 
