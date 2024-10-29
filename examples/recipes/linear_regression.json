@@ -2,7 +2,7 @@
     "data": {
         "name": "CSVLoader",
         "kwargs": {
-            "path": "/Users/i550012/study/heptopics/hepytorch/examples/data/linear_regression_data.csv",
+            "path": "examples/data/linear_regression_data.csv",
             "format": "csv"
         }
     },
