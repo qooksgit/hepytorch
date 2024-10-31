@@ -1,4 +1,4 @@
-from .liner_regression import LinearRegression
+from .linear_regression import LinearRegression
 from .simple_neural_network import SimpleNeuralNetwork
 from .binary_classification import BinaryClassification
 
