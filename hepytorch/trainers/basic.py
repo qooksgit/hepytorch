@@ -19,6 +19,8 @@ class BasicTrainer(AbsTrainer):
     def __init__(self, **kwargs):
         self.batch_size = kwargs.pop("batch_size", 4)
         self.epochs = kwargs.pop("epochs", 10)
+        self.regularization_type = kwargs.pop("regularization_type", None)
+        self.lambda_reg = kwargs.pop("lambda_reg", 0.00001)
 
     def train(self, device, data, target, model, loss_fn, optimizer):
         data = data.to(device)
@@ -37,6 +39,16 @@ class BasicTrainer(AbsTrainer):
                 label = label.to(device)
                 yhat = model(data2)
                 loss = loss_fn(yhat, label)
+
+                # Apply L1 regularization
+                if self.regularization_type == "L1":
+                    l1_norm = sum(p.abs().sum() for p in model.parameters())
+                    loss += self.lambda_reg * l1_norm
+                # Apply L2 regularization
+                elif self.regularization_type == "L2":
+                    l2_norm = sum(p.pow(2).sum() for p in model.parameters())
+                    loss += self.lambda_reg * l2_norm
+
                 optimizer.zero_grad()
                 loss.backward()
                 optimizer.step()

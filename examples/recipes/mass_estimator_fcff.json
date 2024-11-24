@@ -1,0 +1,41 @@
+{
+    "data": {
+        "name": "CSVLoader",
+        "kwargs": {
+            "path": "./data/toymc/unweighted_events.csv",
+            "format": "csv"
+        }
+    },
+    "preprocessor": {
+        "name": "EnergyPreprocessor",
+        "kwargs": {}
+    },
+    "model": {
+        "name": "FullyConnectedFeedForward",
+        "kwargs": {
+            "input_features": 8,
+            "hidden_features": 128,
+            "output_features": 1
+        }
+    },
+    "loss_fn": {
+        "name": "MSELoss",
+        "kwargs": {}
+    },
+    "optimizer": {
+        "name": "SGD",
+        "kwargs": {
+            "learning_rate": 1e-5,
+            "momentum": 0.9
+        }
+    },
+    "trainer": {
+        "name": "BasicTrainer",
+        "kwargs": {
+            "epochs": 10,
+            "batch_size": 50,
+            "regularization_type": "None",
+            "lambda_reg": 1e-5
+        }
+    }
+}

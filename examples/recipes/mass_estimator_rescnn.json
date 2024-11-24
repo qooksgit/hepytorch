@@ -1,0 +1,39 @@
+{
+    "data": {
+        "name": "CSVLoader",
+        "kwargs": {
+            "path": "./data/toymc/ttbar_1_30ll_test.csv",
+            "format": "csv"
+        }
+    },
+    "preprocessor": {
+        "name": "ObservablesPreprocessor",
+        "kwargs": {}
+    },
+    "model": {
+        "name": "ResidualCNN",
+        "kwargs": {
+            "input_features": 20,
+            "hidden_features": 31,
+            "output_features": 1
+        }
+    },
+    "loss_fn": {
+        "name": "MSELoss",
+        "kwargs": {}
+    },
+    "optimizer": {
+        "name": "SGD",
+        "kwargs": {
+            "learning_rate": 1e-5,
+            "momentum": 0.9
+        }
+    },
+    "trainer": {
+        "name": "BasicTrainer",
+        "kwargs": {
+            "epochs": 5,
+            "batch_size": 20
+        }
+    }
+}
