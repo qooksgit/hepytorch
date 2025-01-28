@@ -7,13 +7,13 @@
         }
     },
     "preprocessor": {
-        "name": "EnergyPreprocessor",
+        "name": "AllPreprocessor",
         "kwargs": {}
     },
     "model": {
         "name": "SimpleNeuralNetwork",
         "kwargs": {
-            "input_features": 8,
+            "input_features": 54,
             "hidden_features": 100,
             "output_features": 1,
             "dropout": 0.0
