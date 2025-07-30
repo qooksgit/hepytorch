@@ -44,7 +44,7 @@
             "train_size": 0.8,
             "test_size": 0.2,
             "batch_size": 500,
-            "epochs": 20
+            "epochs": 500
         }
     }
 }
