@@ -79,4 +79,4 @@ class EnergyPreprocessor(AbsPreprocessor):
         pd.options.mode.copy_on_write = True
         target = df["topmass"].copy()
 
-        return torch.from_numpy(target.values).type(torch.float).reshape(-1, 1)
+        return torch.from_numpy(target.values.copy()).type(torch.float).reshape(-1, 1)

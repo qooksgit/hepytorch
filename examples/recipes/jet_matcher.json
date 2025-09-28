@@ -2,7 +2,7 @@
     "data": {
         "name": "CSVLoader",
         "kwargs": {
-            "path": "/Users/i550012/study/heptopics/hepytorch/examples/data/toymc/ttbar_1_30ll_test.csv",
+            "path": "data/toymc/ttbar_1_30ll_test.csv",
             "format": "csv"
         }
     },

@@ -2,7 +2,7 @@
     "data": {
         "name": "CSVLoader",
         "kwargs": {
-            "path": "examples/data/toymc/ttbar_1_30ll_test.csv",
+            "path": "data/toymc/ttbar_1_30ll_test.csv",
             "format": "csv"
         }
     },
